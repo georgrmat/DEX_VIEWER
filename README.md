@@ -46,13 +46,16 @@ Open the provided URL in your web browser to interact with the app.
 Click the "Launch" button to retrieve and display real-time data.
 
 **Dependencies**
+
 streamlit
 requests
 pandas
 
 **Acknowledgements**
+
 This app uses data from the Dexscreener API. For more information, visit Dexscreener.
 
 **License**
+
 This project is licensed under the MIT License.
 
