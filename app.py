@@ -15,7 +15,7 @@ crypto = st.sidebar.radio("I have", ["HEX", "PLS", "PLSX"])
 nombre = st.sidebar.number_input("Number", value = 100000)
 
 def bgcolor_positive_or_negative(value):
-    bgcolor = "lightred" if value < 0 else "lightgreen"
+    bgcolor = "#b1532d" if value < 0 else "lightgreen"
     return f"background-color: {bgcolor}; opacity: 0.1"
 
 tokens = {"HEX": token_hex,
