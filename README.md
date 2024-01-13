@@ -37,9 +37,10 @@ streamlit run app.py
 Open the provided URL in your web browser to interact with the app.
 
 **Parameters**
-I have: Select the cryptocurrency you are interested in (HEX, PLS, PLSX).
 
-Number of tokens: Set the desired number of tokens for calculations.
+*I have*: Select the cryptocurrency you are interested in (HEX, PLS, PLSX).
+
+*Number of tokens*: Set the desired number of tokens for calculations.
 
 Click the "Launch" button to retrieve and display real-time data.
 
