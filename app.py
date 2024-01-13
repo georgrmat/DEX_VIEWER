@@ -39,7 +39,7 @@ if launch_button:
             
         st.header("Variations")
         df_change = pd.DataFrame(token_changes).T
-        df_change.reset_index(drop = False, inplace = True, names = ["token"])
+        df_change.reset_index(drop = False, inplace = True, names = ["Token"])
         
         for column in ["m5", "h1", "h6", "h24"]:
             df_change[column] = df_change[column].apply(lambda x: str(x) + "%")
@@ -49,8 +49,8 @@ if launch_button:
         st.header("Number of tokens and prices")
         df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
         df_tokens.reset_index(drop = False, inplace = True)
-        df_tokens.columns = ["TOKEN", "PRICE USD"]
-        df_tokens["NUMBER OF TOKENS"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["PRICE USD"]), axis = 1)
+        df_tokens.columns = ["Token", "PriceUSD"]
+        df_tokens["NumberOfTokens"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["PriceUSD"]), axis = 1)
         st.dataframe(df_tokens, use_container_width=True, hide_index = True)
         st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
         
