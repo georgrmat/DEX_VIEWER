@@ -40,7 +40,7 @@ if launch_button:
     df_change = pd.DataFrame(token_changes).T
     df_change.reset_index(drop = False, inplace = True, names = ["token"])
     styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = df_change.columns)
-    st.dataframe(df_change, use_container_width=True, hide_index = True)
+    st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
     
     st.header("Number of tokens and prices")
     df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
