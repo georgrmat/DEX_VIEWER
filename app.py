@@ -16,7 +16,7 @@ nombre = st.sidebar.number_input("Number", value = 100000)
 
 def bgcolor_positive_or_negative(value):
     bgcolor = "red" if value < 0 else "lightgreen"
-    return f"background-color: {bgcolor}; opacity: 0.5"
+    return f"background-color: {bgcolor}; opacity: 0.1"
 
 tokens = {"HEX": token_hex,
           "PLS": token_pls,
