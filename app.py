@@ -39,8 +39,9 @@ if launch_button:
     st.header("Variations")
     df_change = pd.DataFrame(token_changes).T
     df_change.reset_index(drop = False, inplace = True, names = ["token"])
+    
     for column in ["m5", "h1", "h6", "h24"]:
-        df_change[column] = df_change[column].apply(lambda x: x + "%")
+        df_change[column] = df_change[column].apply(lambda x: str(x) + "%")
     styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = ["m5", "h1", "h6", "h24"])
     st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
     
