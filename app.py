@@ -9,9 +9,9 @@ token_hex = "0x2cc85b82Ce181bce921dc4c0758CFd37a6BC240A"
 token_pls = "0x6753560538ECa67617A9Ce605178F788bE7E524E"
 token_plsx = "0xf9FD52Ea7326c4FfD0391a233a96C7fE890C7eb8"
 
-st.sidebar.title("Paramètres")
-crypto = st.sidebar.radio("J'ai du", ["HEX", "PLS", "PLSX"])
-nombre = st.sidebar.number_input("Nombre", value = 100000)
+st.sidebar.title("Parameters")
+crypto = st.sidebar.radio("I have", ["HEX", "PLS", "PLSX"])
+nombre = st.sidebar.number_input("Number", value = 100000)
 
 
 tokens = {"HEX": token_hex,
@@ -36,7 +36,7 @@ if launch_button:
     df["number token"] = df.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["priceUSD"]), axis = 1)
     
     st.dataframe(df)
-    st.write("Valeur totale:", nombre * float(token_prices[crypto][0]), "$")
+    st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
     
 
     
