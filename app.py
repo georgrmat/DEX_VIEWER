@@ -53,5 +53,5 @@ if launch_button:
         df_tokens["NumberOfTokens"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["PriceUSD"]), axis = 1)
         st.dataframe(df_tokens, use_container_width=True, hide_index = True)
         st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
-        st.caching.clear_cache()
+        st.empty()
         time.sleep(5)
