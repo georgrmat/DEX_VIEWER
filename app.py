@@ -9,6 +9,7 @@ token_hex = "0x2cc85b82Ce181bce921dc4c0758CFd37a6BC240A"
 token_pls = "0x6753560538ECa67617A9Ce605178F788bE7E524E"
 token_plsx = "0xf9FD52Ea7326c4FfD0391a233a96C7fE890C7eb8"
 
+st.title("PulseChain DEX Viewer")
 st.sidebar.title("Parameters")
 crypto = st.sidebar.radio("I have", ["HEX", "PLS", "PLSX"])
 nombre = st.sidebar.number_input("Number", value = 100000)
