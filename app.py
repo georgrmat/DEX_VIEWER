@@ -39,7 +39,7 @@ if launch_button:
     st.header("Variations")
     df_change = pd.DataFrame(token_changes).T
     df_change.reset_index(drop = False, inplace = True, names = ["token"])
-    for column in df_change.columns:
+    for column in [c for c in df_change.columns if "token" not in c]:
         df_change[column] = df_change[column].astype(float)
     styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = df_change.columns)
     st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
