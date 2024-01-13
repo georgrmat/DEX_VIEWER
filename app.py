@@ -36,6 +36,7 @@ if launch_button:
     df["number token"] = df.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["priceUSD"]), axis = 1)
     
     st.dataframe(df)
+    st.write("Valeur totale:", nombre * float(token_prices[crypto][0]), "$")
     
 
     
