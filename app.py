@@ -19,6 +19,7 @@ tokens = {"HEX": token_hex,
           "PLSX": token_plsx}
 
 token_prices = {}
+token_changes = {}
 
 launch_button = st.sidebar.button("Launch")
 
@@ -29,13 +30,16 @@ if launch_button:
         price = [response.json()["pairs"][0]["priceUsd"]]
         token_prices[pair] = price
         
-    df = pd.DataFrame.from_dict(token_prices, orient = "index")
-    df.reset_index(drop = False, inplace = True)
-    df.columns = ["token", "priceUSD"]
+        token_changes[pair] = response.json()["pairs"][0]["priceChange"]
+        
+    df_change = pd.DataFrame(token_changes)
+    st.dataframe(df_change, use_container_width=True, hide_index = True)
     
-    df["number token"] = df.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["priceUSD"]), axis = 1)
-
-    st.dataframe(df, use_container_width=True, hide_index = True)
+    df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
+    df_tokens.reset_index(drop = False, inplace = True)
+    df_tokens.columns = ["token", "priceUSD"]
+    df_tokens["number token"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["priceUSD"]), axis = 1)
+    st.dataframe(df_tokens, use_container_width=True, hide_index = True)
     st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
     
 
