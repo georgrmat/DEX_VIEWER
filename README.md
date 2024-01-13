@@ -13,7 +13,7 @@ This Streamlit web application provides a real-time view of variations in token 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/pulsechain-dex-viewer.git
+git clone https://github.com/georgrmat/DEX_VIEWER.git
 ```
 Navigate to the project directory:
 
@@ -25,8 +25,9 @@ Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
 Usage
-Ensure you have created a file named token_adresses.txt in the data directory, containing the necessary token addresses.
+Ensure you have the token_adresses.txt in the data directory, containing the necessary token addresses. You can add the adresses of the tokens you want.
 
 Run the Streamlit app:
 
