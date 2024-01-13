@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 import streamlit as st
-
+import time
 
 
 
@@ -12,7 +12,7 @@ token_plsx = "0xf9FD52Ea7326c4FfD0391a233a96C7fE890C7eb8"
 st.title("PulseChain DEX Viewer")
 st.sidebar.title("Parameters")
 crypto = st.sidebar.radio("I have", ["HEX", "PLS", "PLSX"])
-nombre = st.sidebar.number_input("Number", value = 100000)
+nombre = st.sidebar.number_input("Number of tokens", value = 100000)
 
 def bgcolor_positive_or_negative(value):
     bgcolor = "#b1532d" if float(value.replace("%", "")) < 0 else "lightgreen"
@@ -28,27 +28,30 @@ token_changes = {}
 launch_button = st.sidebar.button("Launch")
 
 if launch_button:
-    for pair in tokens:
-        url = f"https://api.dexscreener.com/latest/dex/pairs/pulsechain/{tokens[pair]}"
-        response = requests.get(url)
-        price = [response.json()["pairs"][0]["priceUsd"]]
-        token_prices[pair] = price
+    while True:
+        for pair in tokens:
+            url = f"https://api.dexscreener.com/latest/dex/pairs/pulsechain/{tokens[pair]}"
+            response = requests.get(url)
+            price = [response.json()["pairs"][0]["priceUsd"]]
+            token_prices[pair] = price
+            
+            token_changes[pair] = response.json()["pairs"][0]["priceChange"]
+            
+        st.header("Variations")
+        df_change = pd.DataFrame(token_changes).T
+        df_change.reset_index(drop = False, inplace = True, names = ["token"])
         
-        token_changes[pair] = response.json()["pairs"][0]["priceChange"]
+        for column in ["m5", "h1", "h6", "h24"]:
+            df_change[column] = df_change[column].apply(lambda x: str(x) + "%")
+        styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = ["m5", "h1", "h6", "h24"])
+        st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
         
-    st.header("Variations")
-    df_change = pd.DataFrame(token_changes).T
-    df_change.reset_index(drop = False, inplace = True, names = ["token"])
-    
-    for column in ["m5", "h1", "h6", "h24"]:
-        df_change[column] = df_change[column].apply(lambda x: str(x) + "%")
-    styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = ["m5", "h1", "h6", "h24"])
-    st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
-    
-    st.header("Number of tokens and prices")
-    df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
-    df_tokens.reset_index(drop = False, inplace = True)
-    df_tokens.columns = ["token", "priceUSD"]
-    df_tokens["number token"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["priceUSD"]), axis = 1)
-    st.dataframe(df_tokens, use_container_width=True, hide_index = True)
-    st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
+        st.header("Number of tokens and prices")
+        df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
+        df_tokens.reset_index(drop = False, inplace = True)
+        df_tokens.columns = ["TOKEN", "PRICE USD"]
+        df_tokens["NUMBER OF TOKENS"] = df_tokens.apply(lambda x: nombre * float(token_prices[crypto][0]) / float(x["PRICE USD"]), axis = 1)
+        st.dataframe(df_tokens, use_container_width=True, hide_index = True)
+        st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
+        
+        time.sleep(5)
