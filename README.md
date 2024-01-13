@@ -18,7 +18,7 @@ git clone https://github.com/georgrmat/DEX_VIEWER.git
 Navigate to the project directory:
 
 ```bash
-cd pulsechain-dex-viewer
+cd DEX_VIEWER
 ```
 Install the required dependencies:
 
@@ -26,7 +26,8 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
-Usage
+**Usage**
+
 Ensure you have the token_adresses.txt in the data directory, containing the necessary token addresses. You can add the adresses of the tokens you want.
 
 Run the Streamlit app:
