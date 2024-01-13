@@ -24,16 +24,16 @@ def bgcolor_positive_or_negative(value):
     bgcolor = "#b1532d" if float(value.replace("%", "")) < 0 else "lightgreen"
     return f"background-color: {bgcolor}; opacity: 0.1"
 
-if launch_button:
+st.header("Variations")
+
+while True:
     for pair in tokens:
         url = f"https://api.dexscreener.com/latest/dex/pairs/pulsechain/{tokens[pair]}"
         response = requests.get(url)
-        price = [response.json()["pairs"][0]["priceUsd"]]
-        token_prices[pair] = price
-        
         token_changes[pair] = response.json()["pairs"][0]["priceChange"]
-        
-    st.header("Variations")
+    
+    
+    
     df_change = pd.DataFrame(token_changes).T
     df_change.reset_index(drop = False, inplace = True, names = ["Token"])
     
@@ -41,6 +41,16 @@ if launch_button:
         df_change[column] = df_change[column].apply(lambda x: str(x) + "%")
     styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = ["m5", "h1", "h6", "h24"])
     st.dataframe(styled_df_change, use_container_width=True, hide_index = True)
+    time.sleep(5)
+    st.cache_data.clear()
+
+
+if launch_button:
+    for pair in tokens:
+        url = f"https://api.dexscreener.com/latest/dex/pairs/pulsechain/{tokens[pair]}"
+        response = requests.get(url)
+        price = [response.json()["pairs"][0]["priceUsd"]]
+        token_prices[pair] = price
     
     st.header("Number of tokens and prices")
     df_tokens = pd.DataFrame.from_dict(token_prices, orient = "index")
