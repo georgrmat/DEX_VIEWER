@@ -12,44 +12,45 @@ This Streamlit web application provides a real-time view of variations in token 
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/pulsechain-dex-viewer.git
-   ```
+```bash
+git clone https://github.com/your-username/pulsechain-dex-viewer.git
+```
 Navigate to the project directory:
 
-   ```bash
-   cd pulsechain-dex-viewer
-   ```
+```bash
+cd pulsechain-dex-viewer
+```
 Install the required dependencies:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 Usage
 Ensure you have created a file named token_adresses.txt in the data directory, containing the necessary token addresses.
 
 Run the Streamlit app:
 
-   ```bash
-   streamlit run app.py
-   ```
+```bash
+streamlit run app.py
+```
 
 Open the provided URL in your web browser to interact with the app.
 
-Parameters
+**Parameters**
 I have: Select the cryptocurrency you are interested in (HEX, PLS, PLSX).
 
 Number of tokens: Set the desired number of tokens for calculations.
 
 Click the "Launch" button to retrieve and display real-time data.
 
-Dependencies
+**Dependencies**
 streamlit
 requests
 pandas
-Acknowledgements
+
+**Acknowledgements**
 This app uses data from the Dexscreener API. For more information, visit Dexscreener.
 
-License
+**License**
 This project is licensed under the MIT License.
 
