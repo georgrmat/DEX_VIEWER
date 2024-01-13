@@ -34,11 +34,8 @@ if launch_button:
         token_changes[pair] = response.json()["pairs"][0]["priceChange"]
         
     st.header("Variations")
-    df_change = pd.DataFrame(token_changes)
-    df_change.reset_index(drop = False, inplace = True, names = ["interval"])
-    columns = df_change.T.loc["interval"].values
-    df_change = df_change.T.iloc[1:]
-    df_change.columns = columns
+    df_change = pd.DataFrame(token_changes).T
+    df_change.reset_index(drop = False, inplace = True, names = ["token"])
     st.dataframe(df_change, use_container_width=True, hide_index = True)
     
     st.header("Number of tokens and prices")
