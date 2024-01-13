@@ -14,6 +14,9 @@ st.sidebar.title("Parameters")
 crypto = st.sidebar.radio("I have", ["HEX", "PLS", "PLSX"])
 nombre = st.sidebar.number_input("Number", value = 100000)
 
+def bgcolor_positive_or_negative(value):
+    bgcolor = "lightcoral" if value < 0 else "lightgreen"
+    return f"background-color: {bgcolor};"
 
 tokens = {"HEX": token_hex,
           "PLS": token_pls,
@@ -36,6 +39,7 @@ if launch_button:
     st.header("Variations")
     df_change = pd.DataFrame(token_changes).T
     df_change.reset_index(drop = False, inplace = True, names = ["token"])
+    styled_df_change = df_change.style.applymap(bgcolor_positive_or_negative, subset = df_change.columns)
     st.dataframe(df_change, use_container_width=True, hide_index = True)
     
     st.header("Number of tokens and prices")
@@ -47,5 +51,4 @@ if launch_button:
     st.write("Total value:", nombre * float(token_prices[crypto][0]), "$")
     
 
-    
 
