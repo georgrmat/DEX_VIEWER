@@ -1,6 +1,6 @@
 # PulseChain DEX Viewer
 
-This Streamlit web application provides a real-time view of variations in token prices on the PulseChain DEX. It fetches data from the Dexscreener API for specified token pairs and displays the information in an interactive dashboard.
+This Streamlit web application provides a real-time view of variations in token prices on the PulseChain DEX. It fetches data from the Dexscreener API for specified token pairs and displays the information in an interactive dashboard. Check it out here: https://dexviewer.streamlit.app/
 
 ## Features
 
